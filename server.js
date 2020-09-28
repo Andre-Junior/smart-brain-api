@@ -1,15 +1,18 @@
 const express = require('express');
 const bcrypt = require('bcrypt-nodejs');
+const cors = require('cors')
 
 const app = express();
 
 app.use(express.json());
+app.use(cors())
 
 const database = {
     users: [
         {
             id: '123',
             name: 'John',
+            password: 'fruta',
             email: 'john.1@gmail.com',
             entries: 0,
             joined: new Date()
@@ -17,6 +20,7 @@ const database = {
         {
             id: '124',
             name: 'Sally',
+            password: 'verduras',
             email: 'sally.sally@gmail.com',
             entries: 0,
             joined: new Date()
@@ -36,20 +40,20 @@ app.get('/', (req, res) => {
 })
 
 app.post('/signin', (req, res) => {
-    if (req.body.email === database.users[0].email && req.body.passaword === database.users[0].passaword) {
-        res.json('Sucesso')
+    if (req.body.email === database.users[0].email && req.body.password === database.users[0].password) {
+        res.json('sucesso')
     } else {
         res.status(400).json('Login incorreto')
     }
 })
 
 app.post('/register', (req,res) => {
-    const { email, name, passaword} = req.body
+    const { email, name, password} = req.body
     database.users.push({
             id: '125',
             name: name,
             email: email,
-            passaword: passaword,
+            password: password,
             entries: 0,
             joined: new Date()
     })
@@ -88,6 +92,6 @@ app.put('/image', (req, res) => {
 })
 
 
-app.listen(4000, () => {
-    console.log('O servidor esta funcionando na porta 4000')
+app.listen(3000, () => {
+    console.log('O servidor esta funcionando na porta 3000')
 })
