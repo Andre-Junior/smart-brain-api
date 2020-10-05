@@ -20,6 +20,7 @@
   "dependencies": {
     "bcrypt-nodejs": "0.0.3",
     "body-parse": "^0.1.0",
+    "clarifai": "^2.9.1",
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "knex": "^0.21.6",
